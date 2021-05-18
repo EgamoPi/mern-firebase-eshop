@@ -1,29 +1,23 @@
-const router = require('express').Router();
-// Import Controllers
-const {
-	getAllSubcategories,
-	createSubcategory,
-	getSubcategory,
-	updateSubcategory,
-	deleteSubcategory,
-} = require('../controllers/subcategoryController');
-// Import Custom Middlewares
+const express = require('express');
+const router = express.Router();
+
+// middlewares
 const { authCheck, adminCheck } = require('../middlewares/authMiddlewares');
 
+// controller
+const {
+	create,
+	read,
+	update,
+	remove,
+	list,
+} = require('../controllers/subcategoryController');
+
 // routes
-router
-	.route('/subcategory')
-	.get(getAllSubcategories)
-	.post(authCheck, adminCheck, createSubcategory);
-
-router.get('/subcategory/:slug', getSubcategory);
-
-// User must be logged in and user must be admin to access following routes.
-router.use(authCheck, adminCheck);
-
-router
-	.route('/subcategory/:slug')
-	.patch(updateSubcategory)
-	.delete(deleteSubcategory);
+router.post('/sub', authCheck, adminCheck, create);
+router.get('/subs', list);
+router.get('/sub/:slug', read);
+router.put('/sub/:slug', authCheck, adminCheck, update);
+router.delete('/sub/:slug', authCheck, adminCheck, remove);
 
 module.exports = router;
