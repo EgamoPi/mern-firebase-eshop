@@ -35,7 +35,7 @@ const SubCreate = () => {
   }
   // Function to load subcategories and save it into the state
   const loadSubcategories = () => {
-    getSubcategories(user.token).then((c) => setSubcategories(c.data))
+    getSubcategories().then((c) => setSubcategories(c.data))
   }
 
   useEffect(() => {

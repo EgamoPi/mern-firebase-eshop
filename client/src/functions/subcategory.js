@@ -1,27 +1,15 @@
 import axios from 'axios'
 
 // Backend call to get all subcategories
-export const getSubcategories = async (authtoken) => {
-  const result = await axios.get(
-    `${process.env.REACT_APP_API_URL}/subcategory`,
-    {
-      headers: {
-        authtoken,
-      },
-    },
-  )
+export const getSubcategories = async () => {
+  const result = await axios.get(`${process.env.REACT_APP_API_URL}/subcategory`)
   return result
 }
 
 // Backend call to get a subcategory based on slug
-export const getSubcategory = async (slug, authtoken) => {
+export const getSubcategory = async (slug) => {
   const result = await axios.get(
     `${process.env.REACT_APP_API_URL}/subcategory/${slug}`,
-    {
-      headers: {
-        authtoken,
-      },
-    },
   )
   return result
 }

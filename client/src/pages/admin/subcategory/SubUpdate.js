@@ -28,7 +28,7 @@ const SubUpdate = ({ match, history }) => {
   }
   // Function to load subcategories and save it into the state
   const loadSubcategory = () => {
-    getSubcategory(match.params.slug, user.token).then((s) => {
+    getSubcategory(match.params.slug).then((s) => {
       setName(s.data.name)
       setParent(s.data.parent)
     })
